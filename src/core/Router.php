@@ -1,5 +1,6 @@
 <?php
 namespace App\core;
+
 class Router
 {
     private array $routes;
@@ -17,9 +18,7 @@ class Router
             return;
         }
 
-        [$controller, $method] = $this->routes[$url];
-// var_dump( $controller);exit;
-        // require_once __DIR__ . '/../core/Controller.php';   
+        [$controller, $method] = $this->routes[$url];  
         $controller = "\App\Controllers\\" . $controller;
         $v = new $controller();
         $v->$method();

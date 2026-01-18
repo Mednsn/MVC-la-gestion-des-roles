@@ -1,6 +1,8 @@
 <?php
-
-class Connexion{
+namespace App\core;
+USE PDO;
+USE PDOException;
+class Database{
     private string $host;
     private string $dbname;
     private string $charset;
@@ -12,7 +14,7 @@ class Connexion{
 public function __construct()
 {
     $this->host='localhost';
-    $this->dbname='gestion_commandes';
+    $this->dbname='gestion_articls';
     $this->charset='utf8';
     $this->root='root';
     $this->password='';

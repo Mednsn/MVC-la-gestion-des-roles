@@ -1,22 +1,80 @@
 <?php
+
 namespace App\Controllers;
 
-use App\Core\Controller;
+session_start();
+
+use App\Service\UserService;
+use App\Models\Entity\User;
+
+
 
 class AuthController
 {
-    public function index()
+    private UserService $user_service;
+
+    public function __construct()
     {
-        echo ' je suus dans home page';
+        $this->user_service = new UserService();
     }
-    // public function login()
-    // {
-    //     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-           
-    //         header('Location: index.php?page=home');
-    //     }
 
-    //     $this->render('auth/login');
-    // }
+    public function login()
+    {
+        require_once __DIR__ . '/../views/auth/login.php';
+    }
 
+    public function signeUp()
+    {
+        require_once __DIR__ . '/../views/auth/signeUp.php';
+    }
+    public function create()
+    {
+        if(!isset($_POST['name']) && !isset($_POST['email']) && !isset($_POST['password'])){
+            $hash_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $user = new User($_POST['name'], $_POST['email'], $hash_password, 'Utilisateur');
+            $this->user_service->create($user);
+            $_SESSION['email'] = $_POST['email'];
+            header('location: /article');
+            }else{
+            header('location: /dashboard');
+
+        }
+    }
+    public function inscrire()
+    {
+        $row = $this->user_service->selectUserByEmail($_POST['email']);
+        $passwrd = $row->password;
+
+        if ($row && password_verify($_POST['password'], $passwrd)) {
+            $_SESSION['email'] = $_POST['email'];
+            if ($row->role === "Admin") {
+                header('location: /dashboard');
+            } else {
+
+                header('location: /article');
+            }
+        } else {
+
+            header('location: /login');
+        }
+    }
+    public function modifierAccounte()
+    {
+        $row = $this->user_service->selectUserByEmail($_POST['modified_email']);
+        if ($row->role === "Admin") {
+            $this->user_service->update($row->id, "Utilisateur");
+        } else {
+            if ($row->role === "Utilisateur") {
+                $this->user_service->update($row->id, "Admin");
+            }
+        }
+                header('location: /dashboard');
+
+    }
+    public function deleteAccounte()
+    {
+        $this->user_service->delete($_POST['supprimer_id']);
+                header('location: /dashboard');
+
+    }
 }

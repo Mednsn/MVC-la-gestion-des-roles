@@ -41,7 +41,7 @@
     <h1 class="text-3xl font-extrabold text-center text-primary mb-2">Connexion</h1>
     <p class="text-center text-gray-500 mb-6">Accédez à votre espace personnel</p>
 
-    <form method="post" class="space-y-5">
+    <form method="post" class="space-y-5" action="/inscrire">
 
       <div>
         <label class="block text-sm font-semibold text-gray-600">Email</label>
@@ -65,7 +65,7 @@
 
     <div class="mt-6 flex justify-center gap-4 text-sm">
       <span class="text-primary font-semibold hover:underline cursor-pointer">Mot de passe oublié</span>
-      <span class="text-accent font-semibold hover:underline cursor-pointer">Créer un compte</span>
+      <a href="/signeUp" class="text-accent font-semibold hover:underline cursor-pointer">Créer un compte</a>
     </div>
 
     <p class="text-center text-xs text-gray-400 mt-6">© 2026 MVC App</p>
