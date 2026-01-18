@@ -20,6 +20,13 @@ class ArticleController
     }
     public function index()
     {
+        session_start();
+
+        if (!isset($_SESSION['user'])) {
+            header("Location: /login");
+            exit();
+        }
+
         require_once __DIR__ . '/../views/front/articles.php';
     }
     public function create()
@@ -34,12 +41,10 @@ class ArticleController
             header('location: /article');
         }
         header('location: /article');
-        
     }
     public function deleteArticle()
     {
         $this->articleservice->delete($_POST['supprimer_id']);
-                header('location: /dashboard');
-
+        header('location: /dashboard');
     }
 }

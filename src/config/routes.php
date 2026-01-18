@@ -12,5 +12,6 @@ return [
     '/createAccounte' => ['AuthController', 'create'],
     '/inscrire' => ['AuthController', 'inscrire'],
     '/modifierAccounte' => ['AuthController', 'modifierAccounte'],
-    '/deleteAccounte' => ['AuthController', 'deleteAccounte']
+    '/deleteAccounte' => ['AuthController', 'deleteAccounte'],
+    '/destroy' => ['AuthController', 'destroy']
 ];

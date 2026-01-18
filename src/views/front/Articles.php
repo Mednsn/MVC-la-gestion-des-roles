@@ -82,7 +82,7 @@ $user = $userService->selectUserByEmail($email);
     <header class="flex justify-between items-center mb-12 text-white">
       <h1 class="text-4xl font-bold">Mes Articles</h1>
 
-      <a href="/logout" class="bg-red-500 px-4 py-2 rounded-lg hover:bg-red-600 transition">Logout</a>
+      <a href="/destroy" class="bg-red-500 px-4 py-2 rounded-lg hover:bg-red-600 transition">Logout</a>
 
     </header>
     <div class="flex justify-between rounded-xl py-3 border-2 border-orange-500">

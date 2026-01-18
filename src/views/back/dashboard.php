@@ -50,7 +50,7 @@ $articles = $articleservice->selectAll();
         <a href="#" class="block px-4 py-3 rounded-lg hover:bg-black/40 transition">Settings</a>
       </nav>
       <div class="p-4">
-        <a href="?page=logout" class="block text-center bg-red-500 hover:bg-red-600 py-2 rounded-lg transition">Logout</a>
+        <a href="/destroy" class="block text-center bg-red-500 hover:bg-red-600 py-2 rounded-lg transition">Logout</a>
       </div>
     </aside>
 

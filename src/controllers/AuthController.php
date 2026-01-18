@@ -29,15 +29,14 @@ class AuthController
     }
     public function create()
     {
-        if(!isset($_POST['name']) && !isset($_POST['email']) && !isset($_POST['password'])){
+        if (!isset($_POST['name']) && !isset($_POST['email']) && !isset($_POST['password'])) {
             $hash_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
             $user = new User($_POST['name'], $_POST['email'], $hash_password, 'Utilisateur');
             $this->user_service->create($user);
             $_SESSION['email'] = $_POST['email'];
             header('location: /article');
-            }else{
+        } else {
             header('location: /dashboard');
-
         }
     }
     public function inscrire()
@@ -68,13 +67,17 @@ class AuthController
                 $this->user_service->update($row->id, "Admin");
             }
         }
-                header('location: /dashboard');
-
+        header('location: /dashboard');
     }
     public function deleteAccounte()
     {
         $this->user_service->delete($_POST['supprimer_id']);
-                header('location: /dashboard');
-
+        header('location: /dashboard');
+    }
+    public function destroy()
+    {
+        
+        session_destroy();
+        header('location: /home');
     }
 }
